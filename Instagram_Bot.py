@@ -69,23 +69,20 @@ class InstagramBot:
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             try:
                 time.sleep(random.randint(2, 4))
-                print("\n[*]Liking")
                 try:
-                    like_button = lambda: driver.find_element_by_xpath("//span[@aria-label='Like']").click()
-                    like_button().click()
-                except Exception as e:
-                    time.sleep(.5)
-                print("[+]Liked")
-                time.sleep(2)
-                print("[*]Commenting")
-                try:
-                    comment_elem = driver.find_element_by_xpath("//textarea[@aria-label='Add a comment…']").click()
+                    print("\n[*]Liking")
+                    driver.find_element_by_xpath("//span[@aria-label='Like']").click()
+                    print("[+]Liked")
+                    time.sleep(2)
+                    print("[*]Commenting")
+                    driver.find_element_by_xpath("//textarea[@aria-label='Add a comment…']").click()
                     driver.find_element_by_xpath("//textarea[@aria-label='Add a comment…']").send_keys("Dope!")
                     driver.find_element_by_xpath("//textarea[@aria-label='Add a comment…']").send_keys(Keys.RETURN)
+                    print('[+]Commented')
                 except Exception as e:
+                    print("[!]Error")
                     print(e)
                     time.sleep(.5)
-                print('[+]Commented')
                 time.sleep(2)
                 for second in reversed(range(0, random.randint(18, 28))):
                     print_same_line("#" + hashtag + ': unique photos left: ' + str(unique_photos)
