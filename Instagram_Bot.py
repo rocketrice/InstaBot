@@ -4,7 +4,6 @@ import time
 import random
 import sys
 
-
 def print_same_line(text):
     sys.stdout.write('\r')
     sys.stdout.flush()
@@ -40,6 +39,9 @@ class InstagramBot:
 
 
     def like_photo(self, hashtag):
+        comments = ['Dope!', 'Awesome!', 'Amazing!', 'Pure fire!', 'Hot', 'Nice!', 'Sweet!', 'Noice', 'Thaz hot',
+                    'Looking good!', 'Very nice!', 'Very dope!', 'Absolute fire!', 'Looken good!', 'Wow!']
+
         driver = self.driver
         driver.get("https://www.instagram.com/explore/tags/" + hashtag + "/")
         time.sleep(2)
@@ -80,7 +82,7 @@ class InstagramBot:
                         time.sleep(.5)
                         print("[*]Commenting")
                         driver.find_element_by_xpath("//textarea[@aria-label='Add a comment…']").click()
-                        driver.find_element_by_xpath("//textarea[@aria-label='Add a comment…']").send_keys("Dope!")
+                        driver.find_element_by_xpath("//textarea[@aria-label='Add a comment…']").send_keys(random.choice(comments))
                         driver.find_element_by_xpath("//textarea[@aria-label='Add a comment…']").send_keys(Keys.RETURN)
                         print('[+]Commented')
                     except Exception as e:
@@ -116,7 +118,7 @@ if __name__ == "__main__":
             tag = random.choice(hashtags)
             ig.like_photo(tag)
             # Wait an hour before moving to next hashtag
-            for second in reversed(range(0, random.randint(18, 28))):
+            for second in reversed(range(0, random.randint(3100,3300))):
                 print_same_line("[*] Seconds till next Hashtag: " + str(second))
         except Exception:
             ig.closeBrowser()
