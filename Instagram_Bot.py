@@ -88,9 +88,8 @@ class InstagramBot:
                         print(e)
                         time.sleep(.5)
                 for second in reversed(range(0, random.randint(18, 28))):
-                    print_same_line("#" + hashtag + ': unique photos left: ' + str(unique_photos)
+                    print_same_line("[*]#" + hashtag + ': unique photos left: ' + str(unique_photos)
                                     + " | Sleeping " + str(second))
-                    time.sleep(1)
             except Exception as e:
                 time.sleep(2)
             unique_photos -= 1
@@ -116,6 +115,9 @@ if __name__ == "__main__":
             # Choose a random tag from the list of tags
             tag = random.choice(hashtags)
             ig.like_photo(tag)
+            # Wait an hour before moving to next hashtag
+            for second in reversed(range(0, random.randint(18, 28))):
+                print_same_line("[*] Seconds till next Hashtag: " + str(second))
         except Exception:
             ig.closeBrowser()
             time.sleep(60)
