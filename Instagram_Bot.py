@@ -65,7 +65,7 @@ class InstagramBot:
         unique_photos = len(pic_hrefs)
         for pic_href in pic_hrefs:
             driver.get(pic_href)
-            time.sleep(2)
+            time.sleep(.5)
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             try:
                 time.sleep(random.randint(2, 4))
@@ -77,7 +77,7 @@ class InstagramBot:
                         print("\n[*]Liking")
                         driver.find_element_by_xpath('//span[@aria-label="Like"]').click()
                         print("[+]Liked")
-                        time.sleep(2)
+                        time.sleep(.5)
                         print("[*]Commenting")
                         driver.find_element_by_xpath("//textarea[@aria-label='Add a comment…']").click()
                         driver.find_element_by_xpath("//textarea[@aria-label='Add a comment…']").send_keys("Dope!")
@@ -87,7 +87,6 @@ class InstagramBot:
                         print("[!]Error")
                         print(e)
                         time.sleep(.5)
-                time.sleep(2)
                 for second in reversed(range(0, random.randint(18, 28))):
                     print_same_line("#" + hashtag + ': unique photos left: ' + str(unique_photos)
                                     + " | Sleeping " + str(second))
